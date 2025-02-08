@@ -376,6 +376,8 @@
     --default-mono-font-variation-settings: var(
       --font-mono--font-variation-settings
     );
+    --animate-floatRight: floatRight 2.5s infinite;
+    --animate-opacityPulse: opacityPulse 2.5s infinite;
   }
 }
 @layer base {
@@ -529,24 +531,6 @@
   .z-30 {
     z-index: 30;
   }
-  .container {
-    width: 100%;
-    @media (width >= 40rem) {
-      max-width: 40rem;
-    }
-    @media (width >= 48rem) {
-      max-width: 48rem;
-    }
-    @media (width >= 64rem) {
-      max-width: 64rem;
-    }
-    @media (width >= 80rem) {
-      max-width: 80rem;
-    }
-    @media (width >= 96rem) {
-      max-width: 96rem;
-    }
-  }
   .mt-4 {
     margin-top: calc(var(--spacing) * 4);
   }
@@ -604,9 +588,6 @@
   .max-w-lg {
     max-width: var(--container-lg);
   }
-  .flex-1 {
-    flex: 1;
-  }
   .border-collapse {
     border-collapse: collapse;
   }
@@ -624,9 +605,6 @@
   }
   .justify-center {
     justify-content: center;
-  }
-  .gap-2 {
-    gap: calc(var(--spacing) * 2);
   }
   .overflow-hidden {
     overflow: hidden;
@@ -675,13 +653,6 @@
   .py-2 {
     padding-block: calc(var(--spacing) * 2);
   }
-  .py-4 {
-    padding-block: calc(var(--spacing) * 4);
-  }
-  .text-4xl {
-    font-size: var(--text-4xl);
-    line-height: var(--tw-leading, var(--text-4xl--line-height));
-  }
   .text-5xl {
     font-size: var(--text-5xl);
     line-height: var(--tw-leading, var(--text-5xl--line-height));
@@ -708,10 +679,6 @@
     outline-style: var(--tw-outline-style);
     outline-width: 1px;
   }
-  .duration-75 {
-    --tw-duration: 75ms;
-    transition-duration: 75ms;
-  }
   .duration-300 {
     --tw-duration: 300ms;
     transition-duration: 300ms;
@@ -719,6 +686,20 @@
   .select-none {
     -webkit-user-select: none;
     user-select: none;
+  }
+  .group-hover\:animate-floatRight {
+    &:is(:where(.group):hover *) {
+      @media (hover: hover) {
+        animation: var(--animate-floatRight);
+      }
+    }
+  }
+  .group-hover\:animate-opacityPulse {
+    &:is(:where(.group):hover *) {
+      @media (hover: hover) {
+        animation: var(--animate-opacityPulse);
+      }
+    }
   }
   .hover\:scale-110 {
     &:hover {
@@ -734,13 +715,6 @@
     &:hover {
       @media (hover: hover) {
         rotate: 6deg;
-      }
-    }
-  }
-  .hover\:animate-bounce {
-    &:hover {
-      @media (hover: hover) {
-        animation: var(--animate-bounce);
       }
     }
   }
@@ -815,6 +789,28 @@
   50% {
     transform: none;
     animation-timing-function: cubic-bezier(0, 0, 0.2, 1);
+  }
+}
+@keyframes floatRight {
+  0% {
+    transform: translatex(0px);
+  }
+  50% {
+    transform: translatex(8px);
+  }
+  100% {
+    transform: translatex(0px);
+  }
+}
+@keyframes opacityPulse {
+  0% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.2;
+  }
+  100% {
+    opacity: 1;
   }
 }
 @property --tw-rotate-x {
